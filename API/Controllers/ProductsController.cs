@@ -11,6 +11,7 @@ using API.Dtos;
 using Core.Specification;
 using API.Error;
 using Microsoft.AspNetCore.Http;
+using API.Helpers;
 
 namespace API.Controllers
 { 
@@ -35,12 +36,18 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductDto>>> GetProductsAsync()
+        public async Task<ActionResult<Pagination<IReadOnlyList<ProductDto>>>> GetProductsAsync(
+         [FromQuery] ProductSpecParams specParams)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(specParams);
+            var countSpec = new ProductsWithFiltersForCountSpecification(specParams);
             
-            var product= await _productRepository.ListAsync(spec);            
-            return Ok(_mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductDto>>(product));
+            var totlaItems = await _productRepository.CountAsync(countSpec);
+
+            var product= await _productRepository.ListAsync(spec);   
+
+            var data= _mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductDto>>(product);        
+            return Ok(new Pagination<ProductDto>(specParams.PageIndex, specParams.PageSize, totlaItems, data));
         }
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
