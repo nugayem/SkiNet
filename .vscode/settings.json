@@ -1,0 +1,4 @@
+{
+    "terminal.integrated.enableBell": true,
+    "terminal.integrated.tabs.showActiveTerminal": "always"
+}
