@@ -40,12 +40,13 @@ namespace API.Controllers
          [FromQuery] ProductSpecParams specParams)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(specParams);
+            
             var countSpec = new ProductsWithFiltersForCountSpecification(specParams);
             
             var totlaItems = await _productRepository.CountAsync(countSpec);
 
             var product= await _productRepository.ListAsync(spec);   
-
+            
             var data= _mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductDto>>(product);        
             return Ok(new Pagination<ProductDto>(specParams.PageIndex, specParams.PageSize, totlaItems, data));
         }
