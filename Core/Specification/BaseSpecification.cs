@@ -44,6 +44,7 @@ namespace Core.Specification
 
         protected void ApplyPaging(int skip, int take)
         {
+            System.Console.WriteLine("Skip:"+skip+ " Take:" + take );        
             Skip=skip;
             Take=take;
             IsPagingEnaled=true;

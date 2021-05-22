@@ -8,11 +8,11 @@ namespace Core.Specification
     {
         public ProductsWithTypesAndBrandsSpecification(ProductSpecParams specParams )
             :base(x=>
-                (string.IsNullOrEmpty(specParams.Search) || x.Name.ToLower().Contains(specParams.Search))
+                (string.IsNullOrEmpty(specParams.Search) || x.Name.ToLower().Contains(specParams.Search)) 
                 &&
-                (!specParams.BrandId.HasValue || x.ProductBrandId==specParams.BrandId)
+                (!specParams.BrandId.HasValue || x.ProductBrandId == specParams.BrandId) 
                 &&
-                (!specParams.TypeId.HasValue || x.ProductTypeId==specParams.TypeId)
+                (!specParams.TypeId.HasValue || x.ProductTypeId == specParams.TypeId)
             )
         {
             AddInclude(x=>x.ProductType);
@@ -24,10 +24,10 @@ namespace Core.Specification
             {
                 switch (specParams.Sort)
                 {
-                    case "PriceAsc":
+                    case "priceAsc":
                         AddOrderBy(p=>p.Price);
                         break;                        
-                    case "PriceDesc":
+                    case "priceDesc":
                         AddOrderByDescending(p=>p.Price);
                         break;              
                     default:

@@ -39,6 +39,10 @@ namespace API.Controllers
         public async Task<ActionResult<Pagination<IReadOnlyList<ProductDto>>>> GetProductsAsync(
          [FromQuery] ProductSpecParams specParams)
         {
+            System.Console.Write(specParams.BrandId);
+            System.Console.Write(specParams.TypeId);
+            System.Console.Write(specParams.Sort);
+            
             var spec = new ProductsWithTypesAndBrandsSpecification(specParams);
             
             var countSpec = new ProductsWithFiltersForCountSpecification(specParams);
