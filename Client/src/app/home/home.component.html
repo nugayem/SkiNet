@@ -1,1 +1,16 @@
-<p>home works!</p>
+ 
+    <carousel [noWrap]="noWrapSlides" [showIndicators]="showIndicator">
+       <slide *ngFor="let slide of slides; let index=index">
+          <img [src]="slide.image" alt="image slide" style="display: block; width: 100%;">
+          <div class="carousel-caption">
+             <h4>Slide {{index}}</h4>
+             <p>{{slide.text}}</p>
+          </div>
+       </slide>
+    </carousel>  
+    <section class="feature">
+        <div class="d-flex justify-content-center pt-t4">
+            <h4>Welcome to the Shop...</h4>
+        </div>
+    </section>
+ 

@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container mt-5">
     <div class="row">
 
         <section class="col-3">
+            <ng-container *ngIf="types && brands">
             <h5 class="text-warning ml-3">Sort</h5>
             <select class="custome-select" (change)="onSortSelected($event.target.value)">
                 <option 
@@ -35,7 +36,7 @@
                     {{type.name}}
                 </li>
             </ul>
-
+            </ng-container>
         </section>
         <section class="col-9">
             <div class="d-flex justify-content-between align-items-center pb-2">                
@@ -45,13 +46,13 @@
                 [totalCount]="this.totalCount">
 
                 </app-paging-header>
+            
+                <div class="form-inline mt-2" *ngIf="products">
+                    <input (keyup.enter)="onSearch" type="text" class="form-conrol" #search style="width: 300px;" placeholder="Search">
+                    <button (click)="onSearch()" class="btn btn-outline-primary my-2">Search</button>
+                    <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
+                </div>
             </div>
-            <div class="form-inline mt-2">
-                <input (keyup.enter)="onSearch" type="text" class="form-conrol" #search style="width: 300px;" placeholder="Search">
-                <button (click)="onSearch()" class="btn btn-outline-primary my-2">Search</button>
-                <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
-            </div>
-
             <div class="row">
                 <div class="col-md-4" *ngFor="let item of products">
                   <app-product-item [product]="item"></app-product-item>
