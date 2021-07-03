@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Dtos;
 using AutoMapper;
@@ -24,7 +25,11 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basketDto)
         {
-            var basket= _mapper.Map<CustomerBasket>(basketDto);
+
+            var basketItem = new BasketItem(){ Id=basketDto.Items[0].Id, Type=basketDto.Items[0].Type, Brand=basketDto.Items[0].Brand, ProductName=basketDto.Items[0].ProductName, Price=basketDto.Items[0].Price, PictureUrl= basketDto.Items[0].PictureUrl , Quantity=basketDto.Items[0].Quantity};
+            var item =new List<BasketItem>();
+            item.Add(basketItem);
+            var basket= new CustomerBasket(){Id=basketDto.Id, Items=item}; //_mapper.Map<CustomerBasket>(basketDto);
             var updatedBasket = await _basketRepository.UpdateBasketAsync(basket);
             return Ok(updatedBasket);
         }
