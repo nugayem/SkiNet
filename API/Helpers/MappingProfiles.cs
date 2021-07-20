@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using API.Dtos;
 using AutoMapper;
 using Core.Entities;
@@ -15,7 +16,7 @@ namespace API.Helpers
                 .ForMember(pd=>pd.ProductType, o=>o.MapFrom(p=>p.ProductType.Name))
                 .ForMember(pd=>pd.PictureUrl, o=>o.MapFrom<ProductUrlResolver>());
             CreateMap<Core.Entities.Identity.Address, AddressDto>().ReverseMap();
-            CreateMap<CustomerBasketDto, CustomerBasket>().ReverseMap();
+            CreateMap<CustomerBasketDto, CustomerBasket>() ;
             CreateMap<BasketItemDto, BasketItem>().ReverseMap();
             CreateMap<AddressDto, Core.Entities.OrderAggregate.Address>(); 
             CreateMap<Order, OrderToReturnDto>()

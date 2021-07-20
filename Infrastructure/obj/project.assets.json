@@ -630,6 +630,15 @@
           }
         }
       },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "Pipelines.Sockets.Unofficial/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -758,6 +767,19 @@
           "lib/net5.0/StackExchange.Redis.dll": {}
         }
       },
+      "Stripe.net/39.58.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "System.Configuration.ConfigurationManager": "5.0.0"
+        },
+        "compile": {
+          "lib/net5.0/Stripe.net.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Stripe.net.dll": {}
+        }
+      },
       "System.Buffers/4.5.0": {
         "type": "package",
         "compile": {
@@ -792,7 +814,7 @@
           "System.Security.Permissions": "5.0.0"
         },
         "compile": {
-          "ref/netstandard2.0/_._": {}
+          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
@@ -1924,6 +1946,37 @@
         "version.txt"
       ]
     },
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Pipelines.Sockets.Unofficial/2.2.0": {
       "sha512": "7hzHplEIVOGBl5zOQZGX/DiJDHjq+RVRVrYgDiqXb6RriqWAdacXxp+XO9WSrATCEXyNOUOQg9aqQArsjase/A==",
       "type": "package",
@@ -2039,6 +2092,28 @@
         "lib/netstandard2.0/StackExchange.Redis.xml",
         "stackexchange.redis.2.2.4.nupkg.sha512",
         "stackexchange.redis.nuspec"
+      ]
+    },
+    "Stripe.net/39.58.0": {
+      "sha512": "qihKrsE+DJj7QElyb6ZjJ3mQvYhZgiahkfOZYH8gtDkNi1Ot152TNayKRDLZ7QSgWOcFsMgTY/Z+3lls2vzGcA==",
+      "type": "package",
+      "path": "stripe.net/39.58.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "icon.png",
+        "lib/net461/Stripe.net.dll",
+        "lib/net461/Stripe.net.pdb",
+        "lib/net461/Stripe.net.xml",
+        "lib/net5.0/Stripe.net.dll",
+        "lib/net5.0/Stripe.net.pdb",
+        "lib/net5.0/Stripe.net.xml",
+        "lib/netstandard2.0/Stripe.net.dll",
+        "lib/netstandard2.0/Stripe.net.pdb",
+        "lib/netstandard2.0/Stripe.net.xml",
+        "stripe.net.39.58.0.nupkg.sha512",
+        "stripe.net.nuspec"
       ]
     },
     "System.Buffers/4.5.0": {
@@ -2735,6 +2810,7 @@
       "Microsoft.EntityFrameworkCore.Sqlite >= 5.0.5",
       "Microsoft.IdentityModel.Tokens >= 6.11.1",
       "StackExchange.Redis >= 2.2.4",
+      "Stripe.net >= 39.58.0",
       "System.IdentityModel.Tokens.Jwt >= 6.11.1"
     ]
   },
@@ -2803,6 +2879,10 @@
           "StackExchange.Redis": {
             "target": "Package",
             "version": "[2.2.4, )"
+          },
+          "Stripe.net": {
+            "target": "Package",
+            "version": "[39.58.0, )"
           },
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",

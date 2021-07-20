@@ -1,6 +1,6 @@
 export interface IAddress{
-    firstName: string;
-    lastNAme:string;
+    firstname: string;
+    lastnAme:string;
     street: string;
     city:string;
     state:string;

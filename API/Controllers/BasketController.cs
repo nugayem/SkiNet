@@ -15,6 +15,7 @@ namespace API.Controllers
         public BasketController(IBasketRepository basketRepository, IMapper mapper)
         {
             _basketRepository = basketRepository;
+            _mapper=mapper;
         }
         [HttpGet]
         public async Task<ActionResult<CustomerBasket>> GetBasketById(string id)
@@ -24,12 +25,10 @@ namespace API.Controllers
         }
         [HttpPost]
         public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basketDto)
-        {
-
-            var basketItem = new BasketItem(){ Id=basketDto.Items[0].Id, Type=basketDto.Items[0].Type, Brand=basketDto.Items[0].Brand, ProductName=basketDto.Items[0].ProductName, Price=basketDto.Items[0].Price, PictureUrl= basketDto.Items[0].PictureUrl , Quantity=basketDto.Items[0].Quantity};
-            var item =new List<BasketItem>();
-            item.Add(basketItem);
-            var basket= new CustomerBasket(){Id=basketDto.Id, Items=item}; //_mapper.Map<CustomerBasket>(basketDto);
+        { 
+            System.Console.WriteLine(basketDto);
+            
+            var basket =_mapper.Map<CustomerBasket>(basketDto);
             var updatedBasket = await _basketRepository.UpdateBasketAsync(basket);
             return Ok(updatedBasket);
         }

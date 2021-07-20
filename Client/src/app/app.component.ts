@@ -28,11 +28,14 @@ export class AppComponent implements OnInit {
   }
   loadBasket(){
     const basketId= localStorage.getItem('basket_id');
+    console.log(" Basket ID is "+ basketId);
+    //localStorage.removeItem('basket_id');
 
+      //    this.basketService.deleteLocalBasket(basketId);
     if(basketId){
       this.basketService.getBasket(basketId)
           .subscribe(()=>{
-            console.log("Initialize Basket")
+            console.log("Initialize Basket"+ basketId);
           }, error=>{
             console.log(error);
           });
