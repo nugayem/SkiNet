@@ -5,6 +5,7 @@ using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Stripe;
 using Order= Core.Entities.OrderAggregate.Order;
@@ -15,11 +16,12 @@ namespace API.Controllers
     {
         private readonly IPaymentService _paymentServive;
         private readonly ILogger<PaymentsController> _logger;
-        private const string WhSecret="whsec_cdds7X1Ic8o1BcxyiB7zBWTX3o29s7CC";
-        public PaymentsController(IPaymentService paymentServive, ILogger<PaymentsController> logger)
+        private readonly string _whSecret;
+        public PaymentsController(IPaymentService paymentServive, ILogger<PaymentsController> logger, IConfiguration config)
         {
             this._paymentServive = paymentServive;
             this._logger = logger;
+            this._whSecret=config.GetSection("WhSecret").Value;
         }
         [Authorize]
         [HttpPost("{basketId}")]
@@ -36,7 +38,7 @@ namespace API.Controllers
         {
             var json= await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
 
-            var stripeEvent= EventUtility.ConstructEvent(json, Request.Headers["stripe-Signature"], WhSecret);
+            var stripeEvent= EventUtility.ConstructEvent(json, Request.Headers["stripe-Signature"], _whSecret);
 
             PaymentIntent intent;
             Order order;
